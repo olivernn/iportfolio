@@ -13,8 +13,9 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.xml
   def show
-    @page = Page.find(params[:id])
-
+    @page = Page.display(params)
+    raise ActiveRecord::RecordNotFound if @page.nil?
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @page }

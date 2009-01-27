@@ -7,7 +7,6 @@ describe PagesController do
   end
   
   describe "responding to GET index" do
-
     it "should expose all pages as @pages" do
       Page.should_receive(:find).with(:all).and_return([mock_page])
       get :index
@@ -15,7 +14,6 @@ describe PagesController do
     end
 
     describe "with mime type of xml" do
-  
       it "should render all pages as xml" do
         request.env["HTTP_ACCEPT"] = "application/xml"
         Page.should_receive(:find).with(:all).and_return(pages = mock("Array of Pages"))
@@ -23,21 +21,23 @@ describe PagesController do
         get :index
         response.body.should == "generated XML"
       end
-    
     end
-
   end
 
   describe "responding to GET show" do
-
-    it "should expose the requested page as @page" do
+    it "should expose the requested page as @page, finding by permalink if passed" do
+      Page.should_receive(:find_by_permalink).with("about_us").and_return(mock_page)
+      get :show, :id => "37", :permalink => "about_us"
+      assigns[:page].should equal(mock_page)
+    end
+    
+    it "should expose the requested page as @page, finding by id if no permalink is passed" do
       Page.should_receive(:find).with("37").and_return(mock_page)
-      get :show, :id => "37"
+      get :show, :id => "37", :permalink => nil
       assigns[:page].should equal(mock_page)
     end
     
     describe "with mime type of xml" do
-
       it "should render the requested page as xml" do
         request.env["HTTP_ACCEPT"] = "application/xml"
         Page.should_receive(:find).with("37").and_return(mock_page)
@@ -45,35 +45,27 @@ describe PagesController do
         get :show, :id => "37"
         response.body.should == "generated XML"
       end
-
-    end
-    
+    end    
   end
 
   describe "responding to GET new" do
-  
     it "should expose a new page as @page" do
       Page.should_receive(:new).and_return(mock_page)
       get :new
       assigns[:page].should equal(mock_page)
     end
-
   end
 
-  describe "responding to GET edit" do
-  
+  describe "responding to GET edit" do  
     it "should expose the requested page as @page" do
       Page.should_receive(:find).with("37").and_return(mock_page)
       get :edit, :id => "37"
       assigns[:page].should equal(mock_page)
     end
-
   end
 
   describe "responding to POST create" do
-
-    describe "with valid params" do
-      
+    describe "with valid params" do    
       it "should expose a newly created page as @page" do
         Page.should_receive(:new).with({'these' => 'params'}).and_return(mock_page(:save => true))
         post :create, :page => {:these => 'params'}
@@ -84,12 +76,10 @@ describe PagesController do
         Page.stub!(:new).and_return(mock_page(:save => true))
         post :create, :page => {}
         response.should redirect_to(page_url(mock_page))
-      end
-      
+      end      
     end
     
     describe "with invalid params" do
-
       it "should expose a newly created but unsaved page as @page" do
         Page.stub!(:new).with({'these' => 'params'}).and_return(mock_page(:save => false))
         post :create, :page => {:these => 'params'}
@@ -101,15 +91,11 @@ describe PagesController do
         post :create, :page => {}
         response.should render_template('new')
       end
-      
-    end
-    
+    end  
   end
 
   describe "responding to PUT udpate" do
-
     describe "with valid params" do
-
       it "should update the requested page" do
         Page.should_receive(:find).with("37").and_return(mock_page)
         mock_page.should_receive(:update_attributes).with({'these' => 'params'})
@@ -127,11 +113,9 @@ describe PagesController do
         put :update, :id => "1"
         response.should redirect_to(page_url(mock_page))
       end
-
     end
     
     describe "with invalid params" do
-
       it "should update the requested page" do
         Page.should_receive(:find).with("37").and_return(mock_page)
         mock_page.should_receive(:update_attributes).with({'these' => 'params'})
@@ -149,13 +133,10 @@ describe PagesController do
         put :update, :id => "1"
         response.should render_template('edit')
       end
-
     end
-
   end
 
   describe "responding to DELETE destroy" do
-
     it "should destroy the requested page" do
       Page.should_receive(:find).with("37").and_return(mock_page)
       mock_page.should_receive(:destroy)
@@ -167,7 +148,5 @@ describe PagesController do
       delete :destroy, :id => "1"
       response.should redirect_to(pages_url)
     end
-
   end
-
 end
