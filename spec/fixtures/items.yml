@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+    id:          1
+    project_id:  1
+    position:    1
+    name:        great picture
+    description: this is a picture
+    date:        23/11/2008
+
+two:
+    id:          2
+    project_id:  1
+    position:    2
+    name:        rubbish painting
+    description: this is a painting
+    date:        23/11/2008
+    
+two:
+    id:          3
+    project_id:  1
+    position:    3
+    name:        great song
+    description: this a song
+    date:        23/11/2008
