@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+    id:          1
+    name:        about me
+    permalink:   about_me
+    content:     I am totally fantastic in every single way!
+    
+two:
+    id:          2
+    name:        about you
+    permalink:   about_you
+    content:     You are not as fantastic as me in any way!
+    
+two:
+    id:          3
+    name:        about this
+    permalink:   about_this
+    content:     This will be totally fantastic, just you watch!

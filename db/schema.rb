@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090126201249) do
+ActiveRecord::Schema.define(:version => 20090127132620) do
 
   create_table "items", :force => true do |t|
     t.integer  "project_id",  :null => false
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(:version => 20090126201249) do
     t.string  "server_url"
     t.string  "salt",       :null => false
   end
+
+  create_table "pages", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "permalink",  :null => false
+    t.text     "content",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["permalink"], :name => "index_pages_on_permalink"
 
   create_table "passwords", :force => true do |t|
     t.integer  "user_id"
