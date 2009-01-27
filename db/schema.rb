@@ -9,7 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080929171348) do
+ActiveRecord::Schema.define(:version => 20090126201249) do
+
+  create_table "items", :force => true do |t|
+    t.integer  "project_id",  :null => false
+    t.integer  "position",    :null => false
+    t.string   "name",        :null => false
+    t.text     "description"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "items", ["position"], :name => "index_items_on_position"
+  add_index "items", ["project_id"], :name => "index_items_on_project_id"
 
   create_table "open_id_authentication_associations", :force => true do |t|
     t.integer "issued"
@@ -34,6 +47,18 @@ ActiveRecord::Schema.define(:version => 20080929171348) do
     t.datetime "updated_at"
   end
 
+  create_table "projects", :force => true do |t|
+    t.string   "name",        :limit => 100, :null => false
+    t.text     "description"
+    t.date     "date"
+    t.string   "status",                     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["name"], :name => "index_projects_on_name"
+  add_index "projects", ["status"], :name => "index_projects_on_status"
+
   create_table "roles", :force => true do |t|
     t.string "name"
   end
@@ -50,8 +75,8 @@ ActiveRecord::Schema.define(:version => 20080929171348) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40

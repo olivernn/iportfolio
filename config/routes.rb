@@ -1,4 +1,16 @@
-ActionController::Routing::Routes.draw do |map| 
+ActionController::Routing::Routes.draw do |map|
+  
+  # Sorting of items list rewrites
+  
+  
+  # mapping items to project
+  map.resources :projects do |project|
+    project.resources :items, :collection =>  {:sort => :put}
+  end
+  
+  map.resources :draft_projects
+
+ 
   # Restful Authentication Rewrites
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
