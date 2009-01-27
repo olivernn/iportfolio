@@ -23,7 +23,7 @@ describe ItemsController do
     
     describe "handling a un-recognized project id" do
       it "should issue a warning and redirect to projects index" do
-        Project.stub!(:find).with("99").and_return
+        Project.stub!(:find).with("99").and_raise(ActiveRecord::RecordNotFound)
         get :index, :project_id => "99"
         response.should redirect_to(projects_url)
       end

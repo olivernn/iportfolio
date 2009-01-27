@@ -3,9 +3,13 @@ class ItemsController < ApplicationController
   before_filter :load_project
   
   protected
-  
+  # this method will scope this controller to the project matching the project id passed
   def load_project
-    @project = Project.find(params[:project_id])
+    begin
+      @project = Project.find(params[:project_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to projects_url
+    end
   end
   
   public
