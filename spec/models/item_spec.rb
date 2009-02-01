@@ -8,7 +8,8 @@ describe Item do
       :description => 'my very painting',
       :date => Date.today.to_s,
       :created_at => Time.now,
-      :updated_at => Time.now
+      :updated_at => Time.now,
+      :photo => fixtures_file_upload
     }
     @item = Item.new
   end
@@ -34,12 +35,10 @@ describe Item do
   
   # test that the item is listable - probably using acts_as_list
   it "should have list methods"
-    # not sure how to test this?
   
   it "should have the lists scoped to the project"
-    # again not sure how to test
   
   # testing the re-sort method
   it "should receive update on the position"
-    # not sure how to test this method
+  
 end

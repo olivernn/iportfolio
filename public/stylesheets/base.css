@@ -11,9 +11,34 @@ div#flash-error {
 	
 }
 
+/* === LINKS === */
+a{
+	color:#00ffff;
+	text-decoration:underline;
+}
+
+a:visited{
+	color:#009999;
+}
+
+a:hover{
+	color:#009999;
+	text-decoration:underline;
+}
+
+/* === HEADERS === */
+h1, h2, h3, h4, h5, h6{
+	color:#00ffff;
+	text-decoration:none;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana;
+	font-weight:normal;
+}
+
 /* === ERROR MESSAGES === */
 div#errorExplanation {
-	
+	background-color:#646464;
+	border:1px solid #f0f0f0;
+	padding:5px;
 }
 
 div#errorExplanation h2 {
@@ -21,7 +46,7 @@ div#errorExplanation h2 {
 }
 
 div#errorExplanation p {
-	
+	color:#f0f0f0;
 }
 
 div#errorExplanation ul {
@@ -29,10 +54,69 @@ div#errorExplanation ul {
 }
 
 div#errorExplanation ul li {
-	
+	color:#f0f0f0;
+}
+/* === TABLES === */
+table{
+	background-color:#646464;
+	border:1px solid #f0f0f0;
+	padding:5px;
+}
+
+th{
+	border-bottom:1px solid #f0f0f0;;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana;
+	color:#00ffff;;
+	font-size:1.2em;
+	font-weight:normal;
+	text-align:left;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+td{
+	color:#f0f0f0;
+	padding-left:5px;
+	padding-right:5px;
 }
 
 /* === FORMS === */
+legend{
+	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana;
+	color:#00ffff;;
+	font-size:1.2em;
+	font-weight:normal;
+}
+
+fieldset label{
+	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana;
+	color:#00ffff;
+	text-align:right;
+	width:75px;
+	padding-right:20px;
+}
+
+fieldset label, fieldset input, fieldset textarea, fieldset select{
+	display:block;
+	width:250px;
+	float:left;
+	margin-bottom:10px;
+}
+
+fieldset select{
+	width:81px;
+	margin-right:5px;
+}
+
+form br{
+	clear:left;
+}
+
+fieldset{
+	background-color:#646464;
+	border-color:#f0f0f0;
+}
+
 div.fieldWithErrors {
 	
 }

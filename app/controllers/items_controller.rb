@@ -1,9 +1,11 @@
 class ItemsController < ApplicationController
-  
+  # filters
   before_filter :load_project
+  before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]
   
-  protected
   # this method will scope this controller to the project matching the project id passed
+  protected
+  
   def load_project
     begin
       @project = Project.find(params[:project_id])
@@ -12,6 +14,7 @@ class ItemsController < ApplicationController
     end
   end
   
+  # the following methods will respond to public requests
   public
   
   # GET /projects/:project_id/items
@@ -33,6 +36,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @item }
+      format.js
     end
   end
 
@@ -98,8 +102,15 @@ class ItemsController < ApplicationController
     end
   end
   
+  # PUT /projects/:project_id/items/items/sort
   def sort
-    @project.items.order(params[:item])
-    flash[:notice] = "Items succesfully sorted"
+    # @project.items.order(params[:item])
+    # render :nothing => true, :status => 200
+    @project.items.each do |item|
+      if position = params[:items].index(item.id.to_s)
+        item.update_attribute(:position, position + 1) unless item.position == position + 1
+      end
+    end
+    render :nothing => true, :status => 200
   end
 end

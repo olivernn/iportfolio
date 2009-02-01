@@ -1,4 +1,7 @@
 class DraftProjectsController < ApplicationController
+  # filters
+  before_filter :login_required
+  
   # GET /draft_projects
   # GET /draft_projects.xml
   def index
@@ -37,4 +40,24 @@ class DraftProjectsController < ApplicationController
       end
     end
   end
+  
+  # PUT /draft_projects/:id/publish
+  # PUT /draft_projects/:id/publish.xml
+  def publish
+    @project = Project.find(params[:id])
+    
+    respond_to do |format|
+      if @project.publish!
+        flash[:notice] = "Project was succesfully published."
+        format.html { redirect_to(@project) }
+        format.xml  { render :xml => @project, :status => :created, :location => @project }
+      else
+        flash[:notice] = "Project could not be published."
+        format.html { redirect_to(@project) }
+        # TODO: need to make sure the xml returned for a failed create shows the correct error
+        format.xml  { render :xml => @project.errors, :status => :unprocessable_entity }
+      end
+    end 
+  end
+  
 end

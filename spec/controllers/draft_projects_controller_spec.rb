@@ -1,6 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe DraftProjectsController do
+  
+  before(:each) do
+    controller.stub!(:login_required).and_return(true)
+  end
+  
   def mock_project(stubs={})
     @mock_project ||= mock_model(Project, stubs)
   end
@@ -60,6 +65,32 @@ describe DraftProjectsController do
         post :create, :project => {}
         response.should render_template('new')
       end    
+    end
+  end
+  
+  describe "responding to PUT publish" do
+    describe "with valid params" do    
+      it "should find and publish a project with the given id" do
+        Project.should_receive(:find).with("37").and_return(mock_project)
+        mock_project.should_receive(:publish!)
+        put :publish, :id => "37"
+        assigns[:project].should equal(mock_project)
+      end
+      
+      it "should redirect to the created project" do
+        Project.stub!(:find).and_return(mock_project(:publish! => true))
+        put :publish, :id => "37"
+        response.should redirect_to(project_url(mock_project))
+      end
+        
+    end
+    
+    describe "with an id of a project that is already active" do
+      it "should redirect to the found project" do
+        Project.stub!(:find).and_return(mock_project(:publish! => false))
+        put :publish, :id => "37"
+        response.should redirect_to(project_url(mock_project))
+      end
     end
   end
 end

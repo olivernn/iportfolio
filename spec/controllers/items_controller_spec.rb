@@ -2,6 +2,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe ItemsController do
 
+  before(:each) do
+    controller.stub!(:login_required).and_return(true)
+  end
+
   def mock_item(stubs={})
     @mock_item ||= mock_model(Item, stubs)
   end

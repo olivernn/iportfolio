@@ -1,3 +1,26 @@
+<h1><%= @project.name %></h1><p><%= @project.status %></p>
+<div class="project_description"><%= @project.description %></div>
+
+<% unless @project.items.empty? %>
+  <% if @project.items.size > 1%>
+    <div id="carousel_holder"><div id="carousel">
+		<ul id="carousel_list">
+		<% for item in @items %>
+			<li class="carousel_item">
+				<%= link_to(image_tag(item.photo.url(:thumb), :title => item.description), project_item_path(@project, item), :class => 'carousel') %>
+			</li>
+		<% end %>
+	</ul>
+	</div>
+
+	<div id="carousel_controls"><a href="#" id="carousel-prev" class="carousel_control">&laquo; Prev</a>
+	<a href="#" id="carousel-next" class="carousel_control">Next &raquo;</a></div></div>
+  <% end %>
+<div id="carousel_view"><%= render :partial => 'items/item', :locals => {:item => @items.first, :project => @project} %></div>
+<% end %>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Back', projects_path %> |
+<%= link_to 'Add Item', new_project_item_path(@project) %> |
+<%= link_to 'Re-order', project_items_path(@project) %> |
+<%= link_to 'Destroy', @project, :confirm => 'Are you sure?', :method => :delete %>

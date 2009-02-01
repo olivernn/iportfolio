@@ -10,24 +10,62 @@
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
 		<%= stylesheet_link_tag 'base' %>
-		<%= javascript_include_tag :defaults %>
+		<%= stylesheet_link_tag 'layout' %>
+		<%= stylesheet_link_tag 'colours' %>
+		<%= stylesheet_link_tag 'common' %>
+		<%= stylesheet_link_tag 'jquery.jcarousel' %>
+		<%= stylesheet_link_tag 'prettyPhoto' %>
+		<%= javascript_include_tag 'jQuery.js' %>
+		<%= javascript_include_tag 'jquery.tablednd_0_5' %>
+		<%= javascript_include_tag 'jquery.parseUri.js' %>
+		<%= javascript_include_tag 'jquery.corner.js' %>
+		<%= javascript_include_tag 'jquery.jcarousel_lite' %>
+		<%= javascript_include_tag 'jquery.prettyPhoto' %>
+		<%= javascript_include_tag 'application.js' %>
 	</head>
 	<body>
-		<div id="container">
-			<div id="header">
-				<ul>
-					<% if logged_in? %>
-					<li><%= link_to 'Logout', logout_path %></li>
-					<% else %>
-					<li><%= link_to 'Login', login_path %></li>
-					<li><%= link_to 'Signup', signup_path %></li>
-					<% end %>
-				</ul>
-			</div>
-			<div id="content">
-				<%= flash_messages %>
-				<%= yield :layout %>
-			</div>
+	 <div id="flare">
+	 <div id="flare-right">
+	  <div id="container">
+		<div id="header">
+			<h1><%= image_tag('anna_logo1.png', :alt => 'Anna Cole', :title => 'Anna Cole') %></h1>
+			<p style="margin-left:500px; float:right;"><%= image_tag 'shrink_anna_wings.jpg', :alt => 'Anna Cole', :title => 'Anna Cole' %></p>
 		</div>
+		<!-- <div id="menu">
+			<ul>
+				<% if logged_in? %>
+					<li><%= link_to 'Logout', logout_path %></li>
+				<% else %>
+					<li><%= link_to 'Login', login_path %></li>
+				<% end %>
+			</ul>
+		</div> -->
+		
+		<div id="content">
+		  <%= flash_messages %>
+		  <div id="left">
+				<%= yield :layout %>
+		  </div>
+		  <div id="right">
+		  	<%= image_tag 'shrink_anna_wings.jpg', :alt => 'Anna Cole', :title => 'Anna Cole' %>
+		    <ul id="pages_list">
+			  <% for page in @pages %>
+			    <li><%= link_to page.name, page %></li>
+			  <% end %>
+		  	</ul>
+		  </div>
+		</div>
+		<!-- <div id="sub_section">
+			<%= image_tag 'shrink_anna_wings.jpg', :alt => 'Anna Cole', :title => 'Anna Cole' %>
+		  <ul id="pages_list">
+			<% for page in @pages %>
+			  <li><%= link_to page.name, page %></li>
+			<% end %>
+		  </ul>
+		</div> -->
+		<div id="footer"></div>
+	  </div>
+	 </div>
+	 </div>
 	</body>
 </html>

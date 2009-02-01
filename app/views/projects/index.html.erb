@@ -1,18 +1,11 @@
-<h1>Listing projects</h1>
-
-<table>
-  <tr>
-  </tr>
+<h1>Projects</h1>
 
 <% for project in @projects %>
-  <tr>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <div class="project_image" style="background-image: url(<%= project.items.first.photo.url(:long) %>); height:50px; width:500px">
+	<h2 class="project"><%= link_to project.name, project %></h2>
+  </div>
 <% end %>
-</table>
 
 <br />
 
-<%= link_to 'New project', new_project_path %>
+<%= link_to 'New project', new_draft_project_path %>

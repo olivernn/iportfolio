@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+  # filters
+  before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]
+  
   # GET /pages
   # GET /pages.xml
   def index

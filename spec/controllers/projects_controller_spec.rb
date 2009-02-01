@@ -1,13 +1,22 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe ProjectsController do
-
+  
+  before(:each) do
+    controller.stub!(:login_required).and_return(true)
+  end
+  
   def mock_project(stubs={})
     @mock_project ||= mock_model(Project, stubs)
   end
   
   def mock_item(stubs={})
     @item ||= mock_model(Item, stubs)    
+  end
+  
+  describe "before filters" do
+    it "should include login_required filter for edit, create, update & destroy actions"
+    # not sure how to test that that login_required before filter has been declared
   end
   
   describe "responding to GET index" do
@@ -71,57 +80,6 @@ describe ProjectsController do
       assigns[:project].should equal(mock_project)
     end
 
-  end
-
-  describe "responding to POST create" do
-
-    describe "with valid params" do
-      
-      # it "should expose a newly created project as @project" do
-      #   Project.should_receive(:new).with({'these' => 'params'}).and_return(mock_project(:save => true))
-      #   post :create, :project => {:these => 'params'}
-      #   assigns(:project).should equal(mock_project)
-      # end
-      
-      it "should find and publish a project with the given id" do
-        Project.should_receive(:find).with("37").and_return(mock_project)
-        mock_project.should_receive(:publish!)
-        post :create, :id => "37"
-        assigns[:project].should equal(mock_project)
-      end
-      
-      it "should redirect to the created project" do
-        Project.stub!(:find).and_return(mock_project(:publish! => true))
-        post :create, :id => "37"
-        response.should redirect_to(project_url(mock_project))
-      end
-        
-    end
-    
-    describe "with an id of a project that is already active" do
-      it "should redirect to the found project" do
-        Project.stub!(:find).and_return(mock_project(:publish! => false))
-        post :create, :id => "37"
-        response.should redirect_to(project_url(mock_project))
-      end
-        
-        
-        
-         # this is what was orginally here as part of the scaffold
-         # it "should expose a newly created but unsaved project as @project" do
-         #   Project.stub!(:new).with({'these' => 'params'}).and_return(mock_project(:save => false))
-         #   post :create, :project => {:these => 'params'}
-         #   assigns(:project).should equal(mock_project)
-         # end
-    
-         # it "should re-render the 'new' template" do
-         #   Project.stub!(:new).and_return(mock_project(:save => false))
-         #   post :create, :project => {}
-         #   response.should render_template('new')
-         # end
-         
-       end
-    
   end
 
   describe "responding to PUT udpate" do

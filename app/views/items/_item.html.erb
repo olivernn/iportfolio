@@ -1,0 +1,11 @@
+<h1><%= item.name %></h1>
+<% if item.photo_content_type == "image/gif" %>
+  <%= link_to image_tag(item.photo.url(:original), :class => 'item', :alt => item.name), item.photo.url(:original), :class => 'lightbox', :title => item.description %>
+<% else  %>
+  <%= link_to image_tag(item.photo.url(:normal), :class => 'item', :alt => item.name), item.photo.url(:large), :class => 'lightbox', :title => item.description %>
+<% end %>
+
+<div class="project_description"><%= item.description %></div>
+
+<%= link_to 'Edit', edit_project_item_path(project, item) %> |
+<%= link_to 'Back', project_path(project) %>

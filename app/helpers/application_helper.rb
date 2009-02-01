@@ -15,6 +15,5 @@ module ApplicationHelper
       messages << content_tag(:div, html_escape(flash[msg.to_sym]), :id => "flash-#{msg}") unless flash[msg.to_sym].blank?
     end
     messages
-  end
-  
+  end  
 end

@@ -1,17 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :pages
-
-  
-  # Sorting of items list rewrites
-  
   
   # mapping items to project
   map.resources :projects do |project|
     project.resources :items, :collection =>  {:sort => :put}
   end
   
-  map.resources :draft_projects
-
+  map.resources :draft_projects, :member => {:publish => :put}
+  map.resources :pages
  
   # Restful Authentication Rewrites
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -31,7 +26,10 @@ ActionController::Routing::Routes.draw do |map|
   
   # Home Page
   map.root :controller => 'sessions', :action => 'new'
-
+  
+  # these will go to the pages controller, will be for /about or /cv etc
+  map.static ':permalink', :controller => 'pages', :action => 'show'
+  
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

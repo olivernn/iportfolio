@@ -1,0 +1,54 @@
+body{
+	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana;
+	width:80%;
+	margin-right:auto;
+	margin-left:auto;
+}
+
+#flare{
+	background:url("/images/background-flare.png") repeat-y;
+}
+
+#flare-right{
+	background:url("/images/background-flare-right.png") repeat-y right;
+}
+
+#container{
+	background-color:#1c1c1c;
+	color:#f0f0f0;
+	margin-right:22px;
+	margin-left:22px;
+	border:1px solid #f0f0f0;
+}
+
+#header, #menu, #content, #sub_section, #footer{
+	overflow:hidden;
+	display:inline-block;
+}
+
+/* safari and opera need this */
+#header, #menu, #footer{
+	width:100%;
+}
+
+#menu{
+	margin-top:-3px;
+	border:1px solid #f0f0f0;
+}
+
+#content, #sub_section{
+	float:left;
+}
+
+#content{
+	width:70%;
+	padding:10px 10px 10px 35px;
+}
+
+#sub_section{
+	padding-top:90px;
+}
+
+#footer{
+	clear:left;
+}

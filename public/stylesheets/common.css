@@ -1,0 +1,101 @@
+#menu ul, #menu li{
+	padding:2px;
+	margin:2px;
+	list-style:none;
+	font-size:-0.8em;
+}
+
+#menu li a{
+	font-size:-0.8em;
+}
+
+/* === ITEMS CAROUSEL === */
+
+#items_carosel{
+	margin-top:10px;
+}
+
+#carousel{
+	border:1px solid #f0f0f0;
+	padding-left:15px;
+	background-color:#646464;
+	width:125px;
+}
+
+#carousel_list{
+	list-style:none;
+	padding:0px;
+	margin-right:auto;
+	margin-left:auto;
+}
+
+#carousel_list li{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+#carousel_controls{
+	margin-right:auto;
+	margin-left:auto;
+}
+
+#carousel_holder{
+	float:left;
+	margin:25px;
+	margin-right:50px;
+	margin-left:0px;
+}
+
+a.carousel{
+	color:#646464;
+}
+
+a.carousel img{
+	border:5px solid #f0f0f0;
+	border-bottom:15px solid #f0f0f0;
+}
+
+/* === ITEM IMAGE === */
+img.item{
+	border:10px solid #f0f0f0;
+	border-bottom:30px solid #f0f0f0;
+}
+
+/* === PROJECT INDEX === */
+.project_image{
+	margin-top:10px;
+	border:10px solid #f0f0f0;
+	border-bottom:30px solid #f0f0f0;
+	padding-top:100px;
+}
+
+h2.project{
+	margin:5px;
+	margin-left:10px;
+	margin-right:10px;
+	padding:2px;
+	background-color:#1c1c1c;
+}
+
+h2.project a{
+	text-decoration:none;
+}
+
+h2.project a:visited{
+	color:#00ffff;
+}
+
+h2.project a:hover{
+	color:#009999;
+	text-decoration:underline;
+}
+
+/* === SUB-SECTION LIST === */
+#sub_section ul{
+	list-style:none;
+}
+
+#sub_section img{
+	border:5px solid #f0f0f0;
+	border-bottom:15px solid #f0f0f0;
+}
