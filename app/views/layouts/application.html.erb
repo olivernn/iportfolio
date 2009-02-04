@@ -43,26 +43,11 @@
 		
 		<div id="content">
 		  <%= flash_messages %>
-		  <div id="left">
-				<%= yield :layout %>
-		  </div>
-		  <div id="right">
-		  	<%= image_tag 'shrink_anna_wings.jpg', :alt => 'Anna Cole', :title => 'Anna Cole' %>
-		    <ul id="pages_list">
-			  <% for page in @pages %>
-			    <li><%= link_to page.name, page %></li>
-			  <% end %>
-		  	</ul>
-		  </div>
+			<%= yield :layout %>
 		</div>
-		<!-- <div id="sub_section">
-			<%= image_tag 'shrink_anna_wings.jpg', :alt => 'Anna Cole', :title => 'Anna Cole' %>
-		  <ul id="pages_list">
-			<% for page in @pages %>
-			  <li><%= link_to page.name, page %></li>
-			<% end %>
-		  </ul>
-		</div> -->
+		<div id="sub_section">
+			<%= render :partial => 'layouts/profile' %>
+		</div>
 		<div id="footer"></div>
 	  </div>
 	 </div>

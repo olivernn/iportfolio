@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :profiles
+
   
   # mapping items to project
   map.resources :projects do |project|
@@ -20,12 +22,13 @@ ActionController::Routing::Routes.draw do |map|
   map.open_id_create '/opencreate', :controller => "users", :action => "create", :requirements => { :method => :get }
   
   # Restful Authentication Resources
-  map.resources :users
+  map.resources :users, :has_one => :profile
+  
   map.resources :passwords
   map.resource :session
   
   # Home Page
-  map.root :controller => 'sessions', :action => 'new'
+  map.root :controller => 'projects', :action => 'index'
   
   # these will go to the pages controller, will be for /about or /cv etc
   map.static ':permalink', :controller => 'pages', :action => 'show'

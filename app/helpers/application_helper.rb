@@ -15,5 +15,16 @@ module ApplicationHelper
       messages << content_tag(:div, html_escape(flash[msg.to_sym]), :id => "flash-#{msg}") unless flash[msg.to_sym].blank?
     end
     messages
-  end  
+  end
+  
+  # this method will display the profile attributes if they exist
+  def display_populated_attributes(profile)
+    html = String.new
+    ['location', 'phone', 'freelance', 'skills'].each do |field|
+      if profile.attributes[field]
+        html << "<tr><td>#{field.humanize}</td><td>#{profile.attributes[field]}</td></tr>"
+      end
+    end
+    html
+  end
 end

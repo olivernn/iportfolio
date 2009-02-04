@@ -1,6 +1,6 @@
 body{
 	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana;
-	width:80%;
+	width:1050px;
 	margin-right:auto;
 	margin-left:auto;
 }
@@ -36,17 +36,23 @@ body{
 	border:1px solid #f0f0f0;
 }
 
-#content, #sub_section{
-	float:left;
-}
-
 #content{
-	width:70%;
+	float:left;
+	width:750px;
 	padding:10px 10px 10px 35px;
 }
 
 #sub_section{
-	padding-top:90px;
+	width:150px;
+}
+
+#sub_section .right img{
+	margin-left:10px;
+	border:5px solid #f0f0f0;
+	border-bottom:15px solid #f0f0f0;
+}
+
+#sub_section{
 }
 
 #footer{

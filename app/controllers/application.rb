@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
   end
   
   def sidebar
+    @user = Role.find_by_name('owner').users.first
+    @profile = @user.profile
     @pages = Page.find(:all)
   end
 end

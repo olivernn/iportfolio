@@ -36,4 +36,9 @@ class Project < ActiveRecord::Base
   named_scope :active,  :conditions => {:status => "active"}
   named_scope :drafts,  :conditions => {:status => "draft"}
   named_scope :removed, :conditions => {:status => "removed"}
+  
+  # overriding to_param method to get prettier urls
+  def to_param
+    "#{id}-#{name.parameterize.to_s}"
+  end
 end

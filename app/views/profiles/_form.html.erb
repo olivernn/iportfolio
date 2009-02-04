@@ -1,0 +1,20 @@
+<fieldset>
+	<legend>Profile Details</legend>
+	<label for="profile_location">Location</label>
+	<%= f.text_field :location %><br/>
+	
+	<label for="profile_email">Email</label>
+	<%= f.text_field :email %><br/>
+	
+	<label for="profile_phone">Phone</label>
+	<%= f.text_field :phone %><br/>
+	
+	<label for="profile_freelance">Freelance</label>
+	<%= f.check_box :freelance %><br/>
+	
+	<label for="profile_skills">Skills</label>
+	<%= f.text_area :skills %><br/>
+	
+	<label for="item_photo">Image</label>
+	<%= f.file_field :photo %><br/>
+</fieldset>

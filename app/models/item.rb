@@ -31,6 +31,11 @@ class Item < ActiveRecord::Base
     end
   end
   
+  # overriding to_param method to get prettier urls
+  def to_param
+    "#{id}-#{name.parameterize.to_s}"
+  end
+  
   # re-order the items into the order the ids are passed in
   def self.order(ids)
     update_all(['position = FIND_IN_SET(id,?)', ids.join(',')], {:id => ids})

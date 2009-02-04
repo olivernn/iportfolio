@@ -3,7 +3,7 @@
 
 <% unless @project.items.empty? %>
   <% if @project.items.size > 1%>
-    <div id="carousel_holder"><div id="carousel">
+    <div id="carousel_holder"><a href="#" id="carousel-next" class="carousel_control">Up</a><div id="carousel">
 		<ul id="carousel_list">
 		<% for item in @items %>
 			<li class="carousel_item">
@@ -12,9 +12,8 @@
 		<% end %>
 	</ul>
 	</div>
-
-	<div id="carousel_controls"><a href="#" id="carousel-prev" class="carousel_control">&laquo; Prev</a>
-	<a href="#" id="carousel-next" class="carousel_control">Next &raquo;</a></div></div>
+  <a href="#" id="carousel-prev" class="carousel_control">Down</a>
+</div>
   <% end %>
 <div id="carousel_view"><%= render :partial => 'items/item', :locals => {:item => @items.first, :project => @project} %></div>
 <% end %>

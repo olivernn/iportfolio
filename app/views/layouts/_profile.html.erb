@@ -1,0 +1,16 @@
+<h3><%= @user.name %></h3>
+
+<% unless @user.profile.nil? %>
+  <%= image_tag(@profile.photo.url(:sidebar), :class => 'item', :alt => @user.name) %>
+  <table>
+  	<%= display_populated_attributes(@profile) %>
+  </table>
+<% else %>
+  <%= image_tag 'shrink_anna_wings.jpg', :alt => 'Anna Cole', :title => 'Anna Cole' %>
+<% end %>
+
+<ul id="pages_list">
+<% for page in @pages %>
+  <li><%= link_to page.name, page %></li>
+<% end %>
+</ul>
