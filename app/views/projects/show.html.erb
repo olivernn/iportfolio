@@ -18,8 +18,10 @@
 <div id="carousel_view"><%= render :partial => 'items/item', :locals => {:item => @items.first, :project => @project} %></div>
 <% end %>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %> |
-<%= link_to 'Add Item', new_project_item_path(@project) %> |
-<%= link_to 'Re-order', project_items_path(@project) %> |
-<%= link_to 'Destroy', @project, :confirm => 'Are you sure?', :method => :delete %>
+<% if logged_in? %>
+	<%= link_to 'Edit Project', edit_project_path(@project) %> |
+	<%= link_to 'Back', projects_path %> |
+	<%= link_to 'Add Project Item', new_project_item_path(@project) %> |
+	<%= link_to 'Re-order Items', project_items_path(@project) %> |
+	<%= link_to 'Destroy Project', @project, :confirm => 'Are you sure?', :method => :delete %>
+<% end %>

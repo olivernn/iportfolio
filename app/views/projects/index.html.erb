@@ -8,4 +8,6 @@
 
 <br />
 
-<%= link_to 'New project', new_draft_project_path %>
+<% if logged_in? %>
+	<%= link_to 'New project', new_draft_project_path %>  
+<% end %>

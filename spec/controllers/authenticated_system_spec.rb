@@ -6,6 +6,7 @@ describe SessionsController do
   before do
     # FIXME -- sessions controller not testing xml logins 
     stub!(:authenticate_with_http_basic).and_return nil
+    controller.stub!(:sidebar).and_return(true)
   end    
   describe "logout_killing_session!" do
     before do

@@ -1,16 +1,24 @@
 <h3><%= @user.name %></h3>
 
 <% unless @user.profile.nil? %>
-  <%= image_tag(@profile.photo.url(:sidebar), :class => 'item', :alt => @user.name) %>
-  <table>
+  <%= link_to image_tag(@profile.photo.url(:sidebar), :class => 'item', :alt => @user.name), new_contact_path %>
+  <ul>
   	<%= display_populated_attributes(@profile) %>
-  </table>
+		<% if logged_in? %>
+		  <li><%= link_to "Edit Profile", edit_user_profile_path(@user) %></li>
+		<% end %>
+  </ul>
 <% else %>
   <%= image_tag 'shrink_anna_wings.jpg', :alt => 'Anna Cole', :title => 'Anna Cole' %>
+	<%= link_to "Create Profile", new_user_profile_path(@user) %>
 <% end %>
 
 <ul id="pages_list">
 <% for page in @pages %>
   <li><%= link_to page.name, page %></li>
 <% end %>
+	<li><%= link_to "Contact Me", new_contact_path%></li>
+	<% if logged_in?%>
+	  <li><%= link_to "New Page", new_page_path %></li>
+	<% end %>
 </ul>

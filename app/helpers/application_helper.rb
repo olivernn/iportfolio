@@ -22,7 +22,7 @@ module ApplicationHelper
     html = String.new
     ['location', 'phone', 'freelance', 'skills'].each do |field|
       if profile.attributes[field]
-        html << "<tr><td>#{field.humanize}</td><td>#{profile.attributes[field]}</td></tr>"
+        html << "<li><strong>#{field.humanize}:</strong> #{profile.attributes[field]}</li>" unless profile.attributes[field].empty?
       end
     end
     html

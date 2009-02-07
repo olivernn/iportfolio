@@ -7,5 +7,8 @@
 
 <div class="project_description"><%= item.description %></div>
 
-<%= link_to 'Edit', edit_project_item_path(project, item) %> |
-<%= link_to 'Back', project_path(project) %>
+<% if logged_in? %>
+  <%= link_to 'Edit', edit_project_item_path(project, item) %>
+<% end %>
+
+<%= link_to 'Back', root_path %>

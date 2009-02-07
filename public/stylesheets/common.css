@@ -1,3 +1,9 @@
+/* === HEADER === */
+#header h1 a img{
+	text-decoration:none;
+	border:none;
+}
+
 #menu ul, #menu li{
 	padding:2px;
 	margin:2px;
@@ -93,6 +99,11 @@ h2.project a:hover{
 /* === SUB-SECTION LIST === */
 #sub_section ul{
 	list-style:none;
+	padding:0px;
+}
+
+#sub_section ul li{
+	margin:0px;
 }
 
 #sub_section img{

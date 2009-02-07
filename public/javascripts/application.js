@@ -17,8 +17,8 @@ $(document).ready(function(){
 //this loads the corousel for the items
 $(document).ready(function(){
 	$("#carousel").jCarouselLite({
-      btnNext: "#carousel-next",
-      btnPrev: "#carousel-prev",
+      btnNext: "#carousel-prev",
+      btnPrev: "#carousel-next",
 			speed:   1000,
 			vertical: true,
 			visible: 3

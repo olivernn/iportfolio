@@ -12,6 +12,7 @@ describe ProfilesController do
   
   before(:each) do
     User.stub!(:find).with("1").and_return(mock_user)
+    controller.stub!(:sidebar).and_return(true)
   end
   
   # since this is a singleton resource there will only be one profile and therefore the index is not needed

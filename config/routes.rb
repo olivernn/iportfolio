@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :profiles
-
+  map.resources :contact
   
   # mapping items to project
   map.resources :projects do |project|

@@ -4,6 +4,7 @@ describe DraftProjectsController do
   
   before(:each) do
     controller.stub!(:login_required).and_return(true)
+    controller.stub!(:sidebar).and_return(true)
   end
   
   def mock_project(stubs={})

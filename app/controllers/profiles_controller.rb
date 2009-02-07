@@ -1,6 +1,8 @@
 class ProfilesController < ApplicationController
   
+  # filters
   before_filter :load_user
+  before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]
   
   protected
   
