@@ -4,14 +4,14 @@ class PagesController < ApplicationController
   
   # GET /pages
   # GET /pages.xml
-  def index
-    @pages = Page.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @pages }
-    end
-  end
+  # def index
+  #   @pages = Page.find(:all)
+  # 
+  #   respond_to do |format|
+  #     format.html # index.html.erb
+  #     format.xml  { render :xml => @pages }
+  #   end
+  # end
 
   # GET /pages/1
   # GET /pages/1.xml
@@ -82,7 +82,7 @@ class PagesController < ApplicationController
     @page.destroy
 
     respond_to do |format|
-      format.html { redirect_to(pages_url) }
+      format.html { redirect_to(root_url) }
       format.xml  { head :ok }
     end
   end

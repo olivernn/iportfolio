@@ -1,4 +1,11 @@
-<h1><%= @project.name %></h1><p><%= @project.status %></p>
+<%= meta_title(@project.name) %>
+<%= meta_description(@project.description) %>
+
+<h1><%= @project.name %></h1>
+<% if logged_in? %>
+  <%= @project.status %>
+<% end %>
+
 <div class="project_description"><%= @project.description %></div>
 
 <% unless @project.items.empty? %>
@@ -19,9 +26,11 @@
 <% end %>
 
 <% if logged_in? %>
+  <%= link_to 'New project', new_draft_project_path %> |
+  <%= link_to 'Publish', publish_draft_project_path(@project) if @project.status = 'draft' && !@project.items.empty? %> |
 	<%= link_to 'Edit Project', edit_project_path(@project) %> |
 	<%= link_to 'Back', projects_path %> |
 	<%= link_to 'Add Project Item', new_project_item_path(@project) %> |
-	<%= link_to 'Re-order Items', project_items_path(@project) %> |
+	<%= link_to 'Re-order Items', project_items_path(@project) unless @project.items.empty? %> |
 	<%= link_to 'Destroy Project', @project, :confirm => 'Are you sure?', :method => :delete %>
 <% end %>

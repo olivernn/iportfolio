@@ -88,11 +88,9 @@ h2.project a{
 }
 
 h2.project a:visited{
-	color:#00ffff;
 }
 
 h2.project a:hover{
-	color:#009999;
 	text-decoration:underline;
 }
 

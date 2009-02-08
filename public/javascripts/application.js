@@ -57,7 +57,13 @@ $().ready(function() {
       })
     })
 
-//rounding the corners of the project index images
+//changing the sites colour
 $(document).ready(function(){
-	//$('.project_image').corner();
+	$('.colour_button').click(function(){
+		var colour = this.getAttribute("id");
+		stylepath = "/stylesheets/" + colour + ".css";
+		logopath = "/images/anna_logo1-" + colour + ".png";
+		$('.colour_sheet').attr("href", stylepath);
+		$('#header img').attr("src", logopath);
+	})
 })

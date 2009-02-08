@@ -2,18 +2,14 @@
 <table>
   <tr>
 	<th>Name</th>
-	<th>Description</th>
-	<th>Date</th>
   </tr>
 <% for project in @projects %>
   <tr>
-	<td><%= project.name %></td>
-	<td><%= project.description %></td>
-	<td><%= project.date %></td> %>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-	<td><%= link_to 'Publish', publish_draft_project_path(project), :method => :put %></td>
-    <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+		<td><%= project.name %></td>
+  	<td><%= link_to 'Show', project %></td>
+  	<td><%= link_to 'Edit', edit_project_path(project) %></td>
+		<td><%= link_to 'Publish', publish_draft_project_path(project), :method => :put %></td>
+  	<td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -23,4 +19,3 @@
 <% if logged_in? %>
 	<%= link_to 'New project', new_draft_project_path %>  
 <% end %>
-

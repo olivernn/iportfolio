@@ -1,0 +1,55 @@
+/* === COLOURS === 
+	bright = #ff6400,
+	dull   = #993C00
+*/
+
+
+/* === LINKS === */
+a {
+	color:#ff6400;
+}
+
+a:visited{
+	color:#993C00;
+}
+
+a:hover{
+	color:#993C00;
+}
+
+/* === HEADERS === */
+h1, h2, h3, h4, h5, h6{
+	color:#ff6400;
+}
+
+/* === TABLES === */
+th{
+	color:#ff6400;
+}
+
+/* === FORMS === */
+legend{
+	color:#ff6400;
+}
+
+fieldset label{
+	color:#ff6400;
+}
+
+/* === PROJECT INDEX === */
+h2.project a:visited{
+	color:#ff6400;
+}
+
+h2.project a:hover{
+	color:#993C00;
+}
+
+/* === FLARE === */
+#flare{
+	background:url("/images/flares/left_flare_orange.png") repeat-y;
+}
+
+#flare-right{
+	background:url("/images/flares/right_flare_orange.png") repeat-y right;
+}

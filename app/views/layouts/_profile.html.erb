@@ -6,11 +6,14 @@
   	<%= display_populated_attributes(@profile) %>
 		<% if logged_in? %>
 		  <li><%= link_to "Edit Profile", edit_user_profile_path(@user) %></li>
+			<li><%= link_to "Logout", logout_path %></li>
 		<% end %>
   </ul>
 <% else %>
   <%= image_tag 'shrink_anna_wings.jpg', :alt => 'Anna Cole', :title => 'Anna Cole' %>
-	<%= link_to "Create Profile", new_user_profile_path(@user) %>
+	<% if logged_in? %>
+	  <%= link_to "Create Profile", new_user_profile_path(@user) %>
+	<% end %>
 <% end %>
 
 <ul id="pages_list">

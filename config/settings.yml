@@ -7,9 +7,7 @@ test:
   <<: *non_production_settings
 
 staging:
-  site_url: http://staging.example.com
-  site_name: Bort
-  admin_email: bort@bort.com  
+  <<: *non_production_settings
   
 production:
   site_url: http://www.example.com

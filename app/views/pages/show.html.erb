@@ -2,5 +2,8 @@
 
 <%= @page.content %>
 
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+<% if logged_in? %>
+  <%= link_to 'Edit', edit_page_path(@page) %> |
+	<%= link_to 'Destroy', @page, :confirm => 'Are you sure?', :method => :delete %> |
+<% end %>
+<%= link_to 'Back', root_path %>

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   
   def sidebar
     @user = Role.find_by_name('owner').users.first
-    @profile = @user.profile
+    @profile = @user.profile unless @user.nil?
     @pages = Page.find(:all)
   end
 end
