@@ -17,6 +17,12 @@ module ApplicationHelper
     messages
   end
   
+  def render_item(item, project)
+    if item.type = "Image"
+      render :partial => 'images/image', :locals => {:image => item, :project => project}
+    end
+  end
+  
   # this method will display the profile attributes if they exist
   def display_populated_attributes(profile)
     html = String.new

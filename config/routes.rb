@@ -1,10 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :images
+
   map.resources :profiles
   map.resources :contact
   
   # mapping items to project
   map.resources :projects do |project|
     project.resources :items, :collection =>  {:sort => :put}
+    project.resources :images
   end
   
   map.resources :draft_projects, :member => {:publish => :put}

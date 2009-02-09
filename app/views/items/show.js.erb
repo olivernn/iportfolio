@@ -1,1 +1,2 @@
-$("#carousel_view").hide().html("<%= escape_javascript(render :partial => 'item', :locals => {:item => @item, :project => @project}) %>").fadeIn();
+$("#carousel_view").hide().html("
+<%= escape_javascript(render :partial => 'images/image', :locals => {:image => @item, :project => @project}) %>").fadeIn();

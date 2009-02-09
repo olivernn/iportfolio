@@ -62,7 +62,7 @@ a.carousel img{
 }
 
 /* === ITEM IMAGE === */
-img.item{
+img.image{
 	border:10px solid #f0f0f0;
 	border-bottom:30px solid #f0f0f0;
 }

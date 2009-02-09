@@ -9,19 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090208164015) do
+ActiveRecord::Schema.define(:version => 20090209190959) do
 
   create_table "items", :force => true do |t|
-    t.integer  "project_id",         :null => false
-    t.integer  "position",           :null => false
-    t.string   "name",               :null => false
+    t.integer  "project_id",          :null => false
+    t.integer  "position",            :null => false
+    t.string   "name",                :null => false
     t.text     "description"
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
+    t.string   "source_file_name"
+    t.string   "source_content_type"
+    t.integer  "source_file_size"
+    t.string   "type",                :null => false
   end
 
   add_index "items", ["position"], :name => "index_items_on_position"

@@ -21,6 +21,7 @@ class Project < ActiveRecord::Base
   
   # association statments
   has_many :items, :dependent => :destroy, :order => 'position'
+  has_many :images, :dependent => :destroy, :order => 'position'
   
   # validation statements
   validates_presence_of :name

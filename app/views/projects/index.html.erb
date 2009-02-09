@@ -1,7 +1,7 @@
 <h1>Projects</h1>
 
 <% for project in @projects %>
-  <div class="project_image" style="background-image: url(<%= project.items.first.photo.url(:long) %>); height:50px; width:500px">
+  <div class="project_image" style="background-image: url(<%= project.items.first.source.url(:long) %>); height:50px; width:500px">
 	<h2 class="project"><%= link_to project.name, project %></h2>
   </div>
 <% end %>
@@ -9,6 +9,6 @@
 <br />
 
 <% if logged_in? %>
-	<%= link_to 'New project', new_draft_project_path %>
+	<%= link_to 'New Project', new_draft_project_path %>
 	<%= link_to 'Draft Projects', draft_projects_path %>  
 <% end %>

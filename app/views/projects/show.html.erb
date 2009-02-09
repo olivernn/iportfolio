@@ -14,7 +14,7 @@
 		<ul id="carousel_list">
 		<% for item in @items %>
 			<li class="carousel_item">
-				<%= link_to(image_tag(item.photo.url(:thumb), :title => item.description), project_item_path(@project, item), :class => 'carousel') %>
+				<%= link_to(image_tag(item.source.url(:thumb), :title => item.description), project_item_path(@project, item), :class => 'carousel') %>
 			</li>
 		<% end %>
 	</ul>
@@ -22,7 +22,7 @@
   <a href="#" id="carousel-prev" class="carousel_control">Down</a>
 </div>
   <% end %>
-<div id="carousel_view"><%= render :partial => 'items/item', :locals => {:item => @items.first, :project => @project} %></div>
+<div id="carousel_view"><%= render_item(@items.first, @project) %></div>
 <% end %>
 
 <% if logged_in? %>
@@ -30,7 +30,7 @@
   <%= link_to 'Publish', publish_draft_project_path(@project) if @project.status = 'draft' && !@project.items.empty? %> |
 	<%= link_to 'Edit Project', edit_project_path(@project) %> |
 	<%= link_to 'Back', projects_path %> |
-	<%= link_to 'Add Project Item', new_project_item_path(@project) %> |
+	<%= link_to 'Add Image', new_project_image_path(@project) %> |
 	<%= link_to 'Re-order Items', project_items_path(@project) unless @project.items.empty? %> |
 	<%= link_to 'Destroy Project', @project, :confirm => 'Are you sure?', :method => :delete %>
 <% end %>
