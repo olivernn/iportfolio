@@ -78,16 +78,4 @@ class ImagesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  # PUT /projects/:project_id/images/images/sort
-  def sort
-    # @project.images.order(params[:image])
-    # render :nothing => true, :status => 200
-    @project.images.each do |image|
-      if position = params[:images].index(image.id.to_s)
-        image.update_attribute(:position, position + 1) unless image.position == position + 1
-      end
-    end
-    render :nothing => true, :status => 200
-  end
 end

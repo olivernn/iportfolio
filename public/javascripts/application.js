@@ -8,8 +8,8 @@ jQuery.ajaxSetup({
 
 //this is the ajax functionality on the item pictures in the carosel
 $(document).ready(function(){
-	$('.carousel').click(function(){
-		$.get($(this).attr("href"), null, null, "script");
+	$('a.carousel').click(function(){
+		$.get($(this).attr("href") + ".js", null, null, "script");
 		return false;
 	})
 })
@@ -56,14 +56,3 @@ $().ready(function() {
         }
       })
     })
-
-//changing the sites colour
-$(document).ready(function(){
-	$('.colour_button').click(function(){
-		var colour = this.getAttribute("id");
-		stylepath = "/stylesheets/" + colour + ".css";
-		logopath = "/images/anna_logo1-" + colour + ".png";
-		$('.colour_sheet').attr("href", stylepath);
-		$('#header img').attr("src", logopath);
-	})
-})

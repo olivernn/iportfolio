@@ -1,6 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :images
-
   map.resources :profiles
   map.resources :contact
   

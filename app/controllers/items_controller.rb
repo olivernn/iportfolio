@@ -34,7 +34,6 @@ class ItemsController < ApplicationController
     @item = @project.items.find(params[:id])
     
     respond_to do |format|
-      logger.debug "its ajax" if format.js
       format.html # show.html.erb
       format.xml  { render :xml => @item }
       format.js

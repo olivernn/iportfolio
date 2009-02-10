@@ -14,7 +14,7 @@
 		<ul id="carousel_list">
 		<% for item in @items %>
 			<li class="carousel_item">
-				<%= link_to(image_tag(item.source.url(:thumb), :title => item.description), project_item_path(@project, item), :class => 'carousel') %>
+				<%= link_to image_tag(item.source.url(:thumb), :title => item.description), project_item_path(@project, item), :class => 'carousel'  %>
 			</li>
 		<% end %>
 	</ul>
@@ -27,7 +27,7 @@
 
 <% if logged_in? %>
   <%= link_to 'New project', new_draft_project_path %> |
-  <%= link_to 'Publish', publish_draft_project_path(@project) if @project.status = 'draft' && !@project.items.empty? %> |
+  <%= link_to 'Publish', publish_draft_project_path(@project) if @project.status == 'draft' && !@project.items.empty? %> |
 	<%= link_to 'Edit Project', edit_project_path(@project) %> |
 	<%= link_to 'Back', projects_path %> |
 	<%= link_to 'Add Image', new_project_image_path(@project) %> |
