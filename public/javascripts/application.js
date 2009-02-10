@@ -8,8 +8,8 @@ jQuery.ajaxSetup({
 
 //this is the ajax functionality on the item pictures in the carosel
 $(document).ready(function(){
-	$('a.carousel').click(function(){
-		$.get($(this).attr("href") + ".js", null, null, "script");
+	$('.carousel').click(function(){
+		$.get($(this).attr("href"), null, null, "script");
 		return false;
 	})
 })
