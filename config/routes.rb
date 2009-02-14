@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :projects do |project|
     project.resources :items, :collection =>  {:sort => :put}
     project.resources :images
+    project.resources :videos
   end
   
   map.resources :draft_projects, :member => {:publish => :put}

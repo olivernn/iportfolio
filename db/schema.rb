@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090209190959) do
+ActiveRecord::Schema.define(:version => 20090210192334) do
 
   create_table "items", :force => true do |t|
     t.integer  "project_id",          :null => false
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20090209190959) do
     t.string   "source_content_type"
     t.integer  "source_file_size"
     t.string   "type",                :null => false
+    t.string   "status"
   end
 
   add_index "items", ["position"], :name => "index_items_on_position"

@@ -9,7 +9,7 @@ describe Image do
         :date => Date.today.to_s,
         :created_at => Time.now,
         :updated_at => Time.now,
-        :photo => fixtures_file_upload
+        #:source => fixtures_file_upload
     }
     @image = Image.new
   end

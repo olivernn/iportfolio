@@ -67,6 +67,19 @@ img.image{
 	border-bottom:30px solid #f0f0f0;
 }
 
+/* === VIDEO PLAYER === */
+#video_player{
+	border:10px solid #f0f0f0;
+	border-bottom:30px solid #f0f0f0;
+	width:300px;
+	height:300px;
+	margin-left:200px;
+}
+
+#video_player div{
+	display:block;
+}
+
 /* === PROJECT INDEX === */
 .project_image{
 	margin-top:10px;

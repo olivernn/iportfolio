@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   aasm_state :draft
   aasm_state :active
   aasm_state :removed
-  
+    
   # publishing a project moves the status from draft to active, it also moves a project from removed to active
   aasm_event :publish do
     transitions :to => :active, :from => [:draft, :removed]
@@ -22,6 +22,7 @@ class Project < ActiveRecord::Base
   # association statments
   has_many :items, :dependent => :destroy, :order => 'position'
   has_many :images, :dependent => :destroy, :order => 'position'
+  has_many :videos, :dependent => :destroy, :order => 'position'
   
   # validation statements
   validates_presence_of :name

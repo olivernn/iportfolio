@@ -4,7 +4,7 @@
 <tbody id="items">
   <% for item in @items %>
     <tr id="item-<%= item.id %>">
-	  <td><%= image_tag item.source.url(:thumb) %></td>
+	  <td><%= image_tag item.display_thumbnail %></td>
 	  <td><%= item.name %></td>
       <td><%= link_to 'Show', [@project, item] %></td>
       <td><%= link_to 'Destroy', [@project, item], :confirm => 'Are you sure?', :method => :delete %></td>
@@ -13,4 +13,5 @@
 </tbody>
 </table>
 
-<%= link_to 'New item', new_project_item_path(@project) %>
+<%= link_to 'Add Image', new_project_image_path(@project) %> |
+<%= link_to 'Add Video', new_project_video_path(@project) %>

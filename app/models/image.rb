@@ -15,4 +15,12 @@ class Image < Item
   validates_attachment_presence :source # need to have an attachment
   validates_attachment_content_type :source, :content_type => 'image/jpeg' # only allowing jpegs to be uploaded
   validates_attachment_size :source, :less_than => 5.megabytes # images can only be 5MB max
+  
+  def display_thumbnail
+    self.source.url(:thumb)
+  end
+  
+  def display_long
+    self.source.url(:long)
+  end
 end

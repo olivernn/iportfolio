@@ -66,16 +66,4 @@ class ImagesController < ApplicationController
       end
     end
   end
-
-  # DELETE /projects/:project_id/images/1
-  # DELETE /projects/:project_id/images/1.xml
-  def destroy
-    @image = @project.images.find(params[:id])
-    @image.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(project_images_path(@project)) }
-      format.xml  { head :ok }
-    end
-  end
 end

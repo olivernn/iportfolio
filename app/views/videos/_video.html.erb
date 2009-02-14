@@ -1,0 +1,16 @@
+<h1><%= video.name %></h1>
+
+<div id="video_player">
+	<%= flv_player :file => video.source.url,
+								 :autostart => true,
+							 	 :showicons => false,
+								 :showdigits => false %>
+</div>
+
+<div class="project_description"><%= video.description %></div>
+
+<% if logged_in? %>
+  <%= link_to 'Edit', edit_project_video_path(project, video) %>
+<% end %>
+
+<%= link_to 'Back', project_path(project) %>

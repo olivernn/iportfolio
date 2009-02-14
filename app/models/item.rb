@@ -27,4 +27,20 @@ class Item < ActiveRecord::Base
   def self.order(ids)
     update_all(['position = FIND_IN_SET(id,?)', ids.join(',')], {:id => ids})
   end
+  
+  # def self.display_thumbnail
+  #   if self.class == "Image"
+  #     self.source.url(:thumb)
+  #   else
+  #     self.source.url.gsub!(/video.flv/,"thumb.jpg")
+  #   end
+  # end
+  # 
+  # def self.display_long
+  #   if self.class == "Image"
+  #     self.source.url(:long)
+  #   else
+  #     self.source.url.gsub!(/video.flv/,"long.jpg")
+  #   end
+  # end
 end

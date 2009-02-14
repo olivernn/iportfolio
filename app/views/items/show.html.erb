@@ -1,5 +1,4 @@
 <%= meta_title(@item.name) %>
 <%= meta_description(@item.description) %>
-<% if @item.type == "Image" %>
-  <%= render_item(@item, @project) %>
-<% end %>
+
+<%= render_item(@item, @project) %>

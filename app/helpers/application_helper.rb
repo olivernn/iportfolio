@@ -18,8 +18,11 @@ module ApplicationHelper
   end
   
   def render_item(item, project)
-    if item.type = "Image"
+    if item.class.to_s == "Image"
       render :partial => 'images/image', :locals => {:image => item, :project => project}
+    else
+      # it must be a video
+      render :partial => 'videos/video', :locals => {:video => item, :project => project}
     end
   end
   

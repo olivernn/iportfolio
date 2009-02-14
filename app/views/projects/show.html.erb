@@ -9,12 +9,12 @@
 <div class="project_description"><%= @project.description %></div>
 
 <% unless @project.items.empty? %>
-  <% if @project.items.size > 1%>
+  <% if @project.items.size > 1 %>
     <div id="carousel_holder"><a href="#" id="carousel-next" class="carousel_control">Up</a><div id="carousel">
 		<ul id="carousel_list">
 		<% for item in @items %>
 			<li class="carousel_item">
-				<%= link_to(image_tag(item.source.url(:thumb), :title => item.description), project_item_path(@project, item), :class => 'carousel')  %>
+				<%= link_to(image_tag(item.display_thumbnail, :title => item.description), project_item_path(@project, item), :class => 'carousel')  %>
 			</li>
 		<% end %>
 	</ul>
@@ -27,10 +27,11 @@
 
 <% if logged_in? %>
   <%= link_to 'New project', new_draft_project_path %> |
-  <%= link_to 'Publish', publish_draft_project_path(@project) if @project.status == 'draft' && !@project.items.empty? %> |
+  <%= link_to('Publish', publish_draft_project_path(@project), :method => :put) if @project.status == 'draft' && !@project.items.empty? %> |
 	<%= link_to 'Edit Project', edit_project_path(@project) %> |
 	<%= link_to 'Back', projects_path %> |
 	<%= link_to 'Add Image', new_project_image_path(@project) %> |
+	<%= link_to 'Add Video', new_project_video_path(@project) %> |
 	<%= link_to 'Re-order Items', project_items_path(@project) unless @project.items.empty? %> |
 	<%= link_to 'Destroy Project', @project, :confirm => 'Are you sure?', :method => :delete %>
 <% end %>
