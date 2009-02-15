@@ -7,7 +7,7 @@
 								 :showdigits => false %>
 </div>
 
-<div class="project_description"><%= video.description %></div>
+<p class="project_description"><%= video.description %></p>
 
 <% if logged_in? %>
   <%= link_to 'Edit', edit_project_video_path(project, video) %>

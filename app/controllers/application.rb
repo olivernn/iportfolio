@@ -13,15 +13,26 @@ class ApplicationController < ActionController::Base
   
   protected
   
+  # check whether we should be using the cached action or not
+  def do_caching?
+    !logged_in? && flash.empty?
+  end
+  
   # Automatically respond with 404 for ActiveRecord::RecordNotFound
   def record_not_found
     render :file => File.join(RAILS_ROOT, 'public', '404.html'), :status => 404
   end
   
   def sidebar
-    @user = Role.find_by_name('owner').users.first
-    @profile = @user.profile unless @user.nil?
-    @pages = Page.find(:all)
+    unless request.xhr?
+      unless fragment_exist?(:controller => request.parameters[:controller],
+                             :action => request.parameters[:action],
+                             :id => request.parameters[:id])  
+        @user = Role.find_by_name('owner').users.first
+        @profile = @user.profile unless @user.nil?
+        @pages = Page.find(:all)
+      end
+    end
   end
 end
 

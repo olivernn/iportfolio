@@ -2,6 +2,10 @@ class DraftProjectsController < ApplicationController
   # filters
   before_filter :login_required
   
+  # caching statements
+  caches_action :index
+  cache_sweeper :project, :only => [:publish]
+  
   # GET /draft_projects
   # GET /draft_projects.xml
   def index

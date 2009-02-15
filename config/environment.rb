@@ -41,7 +41,8 @@ Rails::Initializer.run do |config|
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
   # Add additional load paths for your own custom dirs
-  # config.load_paths += %W( #{RAILS_ROOT}/extras )
+  # Including the sweepers directory in the app folder
+  config.load_paths += %W( #{RAILS_ROOT}/app/sweepers )
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
@@ -65,6 +66,9 @@ Rails::Initializer.run do |config|
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
   config.action_controller.session_store = :active_record_store
+  
+  # Setting the caching store for action and fragment caching
+  config.cache_store = :file_store, File.join(RAILS_ROOT, 'tmp', 'cache')
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -74,4 +78,5 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   config.active_record.observers = :user_observer
+
 end

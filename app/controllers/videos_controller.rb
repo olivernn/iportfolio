@@ -1,6 +1,10 @@
 class VideosController < ApplicationController
   
   before_filter :load_project
+  before_filter :login_required, :only => [:new, :edit, :create, :update]
+  
+  # caching statements
+  cache_sweeper :item_sweeper, :only => [:create, :update]
   
   protected
   

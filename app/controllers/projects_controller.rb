@@ -2,6 +2,10 @@ class ProjectsController < ApplicationController
   # filters
   before_filter :login_required, :only => [:edit, :create, :update, :destroy]
   
+  # caching statements
+  caches_action :index, :show, :if => Proc.new {|controller| controller.send(:do_caching?) }
+  cache_sweeper :project_sweeper, :only => [:create, :update, :destroy]
+  
   # GET /projects
   # GET /projects.xml
   def index

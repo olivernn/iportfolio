@@ -1,7 +1,11 @@
 class ItemsController < ApplicationController
   # filters
   before_filter :load_project
-  before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]
+  before_filter :login_required, :only => [:destroy, :index]
+  
+  # caching statements
+  caches_action :show, :if => Proc.new {|controller| controller.send(:do_caching?) }
+  cache_sweeper :item_sweeper, :only => [:destroy, :sort]
   
   # this method will scope this controller to the project matching the project id passed
   protected

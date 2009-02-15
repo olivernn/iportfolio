@@ -2,6 +2,9 @@ class ImagesController < ApplicationController
   # filters
   before_filter :load_project
   before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]
+
+  # caching statements
+  cache_sweeper :item_sweeper, :only => [:create, :update]
   
   # this method will scope this controller to the project matching the project id passed
   protected

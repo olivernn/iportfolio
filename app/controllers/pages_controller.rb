@@ -2,16 +2,9 @@ class PagesController < ApplicationController
   # filters
   before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]
   
-  # GET /pages
-  # GET /pages.xml
-  # def index
-  #   @pages = Page.find(:all)
-  # 
-  #   respond_to do |format|
-  #     format.html # index.html.erb
-  #     format.xml  { render :xml => @pages }
-  #   end
-  # end
+  # caching statements
+  caches_action :show, :if => Proc.new {|controller| controller.send(:do_caching?) }
+  cache_sweeper :page, :only => [:create, :update, :destroy]
 
   # GET /pages/1
   # GET /pages/1.xml
