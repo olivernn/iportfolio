@@ -5,6 +5,9 @@ set :user, "admin"
 set :repository, "git@github.com:olivernn/iportfolio.git"
 set :branch, "movies"
 
+# this is to fix capistrano from hanging?
+set :synchronous_connect, true
+
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
 set :scm, :git
