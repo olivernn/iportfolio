@@ -14,12 +14,12 @@ class Page < ActiveRecord::Base
     self.permalink = CGI.escape(self.name.gsub(' ', '_')) if self.name
   end
   
+  def to_param
+    "#{permalink}"
+  end
+  
   # getting the page for display
-  def self.display(search_term)
-    if search_term[:permalink]
-      find_by_permalink(search_term[:permalink])
-    else
-      find(search_term[:id])
-    end
+  def self.display(permalink)
+    find_by_permalink(permalink)
   end
 end

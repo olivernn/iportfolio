@@ -4,12 +4,12 @@ class PagesController < ApplicationController
   
   # caching statements
   caches_action :show, :if => Proc.new {|controller| controller.send(:do_caching?) }
-  cache_sweeper :page, :only => [:create, :update, :destroy]
+  cache_sweeper :page_sweeper, :only => [:create, :update, :destroy]
 
   # GET /pages/1
   # GET /pages/1.xml
   def show
-    @page = Page.display(params)
+    @page = Page.display(params[:id])
     raise ActiveRecord::RecordNotFound if @page.nil?
     
     respond_to do |format|

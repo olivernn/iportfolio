@@ -2,7 +2,7 @@
 #	Application
 #############################################################
 
-set :application, "bort"
+set :application, "annacole.co.uk"
 set :deploy_to, "/path/to/deploy"
 
 #############################################################
@@ -19,7 +19,7 @@ set :rails_env, "production"
 #	Servers
 #############################################################
 
-set :user, "bort"
+set :user, "admin"
 set :domain, "www.example.com"
 server domain, :app, :web
 role :db, domain, :primary => true
@@ -29,11 +29,11 @@ role :db, domain, :primary => true
 #############################################################
 
 set :scm, :git
-set :branch, "master"
-set :scm_user, 'bort'
-set :scm_passphrase, "PASSWORD"
-set :repository, "git@github.com:FudgeStudios/bort.git"
-set :deploy_via, :remote_cache
+set :branch, "video"
+# set :scm_user, 'bort'
+# set :scm_passphrase, "PASSWORD"
+set :repository, "git@github.com:olivernn/flatshare.git"
+set :deploy_via, :copy
 
 #############################################################
 #	Passenger
