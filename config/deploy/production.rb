@@ -3,7 +3,7 @@
 #############################################################
 
 set :application, "annacole.co.uk"
-set :deploy_to, "/path/to/deploy"
+set :deploy_to, "/home/admin/public_html/#{application}"
 
 #############################################################
 #	Settings
@@ -11,6 +11,8 @@ set :deploy_to, "/path/to/deploy"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+ssh_options[:keys] = %w(~/.ssh/key)
+ssh_options[:port] = 30000
 set :use_sudo, true
 set :scm_verbose, true
 set :rails_env, "production" 
@@ -20,7 +22,7 @@ set :rails_env, "production"
 #############################################################
 
 set :user, "admin"
-set :domain, "www.example.com"
+set :domain, "www.annacole.co.uk"
 server domain, :app, :web
 role :db, domain, :primary => true
 
@@ -29,11 +31,13 @@ role :db, domain, :primary => true
 #############################################################
 
 set :scm, :git
-set :branch, "video"
+set :branch, "movies"
 # set :scm_user, 'bort'
 # set :scm_passphrase, "PASSWORD"
-set :repository, "git@github.com:olivernn/flatshare.git"
+set :repository, "git@github.com:olivernn/iportfolio.git"
 set :deploy_via, :copy
+set :runner, user
+set :use_sudo, true
 
 #############################################################
 #	Passenger
@@ -46,10 +50,9 @@ namespace :deploy do
     production:    
       adapter: mysql
       encoding: utf8
-      username: root
-      password: 
-      database: bort_production
-      host: localhost
+      username: iportfolio
+      password: computer
+      database: iportfolio_production
     EOF
     
     put db_config, "#{release_path}/config/database.yml"
@@ -59,18 +62,18 @@ namespace :deploy do
     # Just change the paths to whatever you need.
     #########################################################
     
-    # desc "Symlink the upload directories"
-    # task :before_symlink do
-    #   run "mkdir -p #{shared_path}/uploads"
-    #   run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
-    # end
+    desc "Create symlink to shared folder"
+    task :create_symlink do
+      run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+      run "ln -nfs #{shared_path}/sources #{release_path}/public/system/sources"
+    end
   
   end
     
   # Restart passenger on deploy
   desc "Restarting mod_rails with restart.txt"
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{current_path}/tmp/restart.txt"
+      sudo "/etc/init.d/thin restart"
   end
   
   [:start, :stop].each do |t|
