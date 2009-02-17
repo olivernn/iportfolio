@@ -1,8 +1,5 @@
 class ContactController < ApplicationController
   
-  # caching statements
-  caches_page :new
-  
   # GET /contact/new
   # GET /contact/new.xml
   def new

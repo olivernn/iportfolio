@@ -10,6 +10,6 @@ staging:
   <<: *non_production_settings
   
 production:
-  site_url: http://www.example.com
-  site_name: Bort
-  admin_email: bort@bort.com
+  site_url: http://AnnaCole.co.uk
+  site_name: AnnaCole.co.uk
+  admin_email: oliver.nightingale2@ntlworld.com
