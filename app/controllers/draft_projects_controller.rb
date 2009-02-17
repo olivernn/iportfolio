@@ -4,7 +4,7 @@ class DraftProjectsController < ApplicationController
   
   # caching statements
   caches_action :index
-  cache_sweeper :project, :only => [:publish]
+  cache_sweeper :project_sweeper, :only => [:publish]
   
   # GET /draft_projects
   # GET /draft_projects.xml

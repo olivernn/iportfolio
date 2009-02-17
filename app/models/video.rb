@@ -60,9 +60,10 @@ class Video < Item
   def convert_command
     flv = File.join(File.dirname(source.path), "#{id}-video.flv")
     File.open(flv, 'w')
-    command = <<-end_command
-      /opt/local/bin/ffmpeg -i #{source.path} -ar 22050 -ab 32 -acodec mp3 -vcodec flv -r 25 -qscale 8 -f flv -y #{flv}
-    end_command
+    command = "ffmpeg -i #{source.path} -ar 22050 -ab 32 -acodec mp3 -vcodec flv -r 25 -qscale 8 -f flv -y #{flv}"
+    if RAILS_ENV == "development"
+      command = "/opt/local/bin/" + command
+    end
     logger.debug command
     command.gsub!(/\s+/," ")
   end
@@ -77,8 +78,8 @@ class Video < Item
       base_path = a.slice(0, (a.size - 2)).join("/")
       thumb_path = base_path + "/thumb/"
       long_path = base_path + "/long/"
-      system(thumbnail_command(thumb_path))
-      system(long_command(long_path))
+      Paperclip.run thumbnail_command(thumb_path)
+      Paperclip.run long_command(long_path)
     end
   end
   
@@ -86,7 +87,7 @@ class Video < Item
     still = File.join(File.dirname(source.path), "#{id}-still.jpg")
     File.open(still, 'w')
     command = <<-end_command
-      /opt/local/bin/ffmpeg -i #{source.path} -an -ss 00:00:01 -an -r 1 -vframes 1 -f mjpeg -y #{still}
+      ffmpeg -i #{source.path} -an -ss 00:00:01 -an -r 1 -vframes 1 -f mjpeg -y #{still}
     end_command
     logger.debug command
     command.gsub!(/\s+/," ")
@@ -98,7 +99,7 @@ class Video < Item
     still = File.join(File.dirname(source.path), "#{id}-still.jpg")
     thumb = File.join(path, "#{id}-thumb.jpg")
     File.open(thumb, 'w')
-    command = "/opt/local/bin/convert #{still} -thumbnail '100x100^' -gravity center -extent 100x100 #{thumb}"
+    command = "convert #{still} -thumbnail '100x100^' -gravity center -extent 100x100 #{thumb}"
     logger.debug command
     command.gsub!(/\s+/," ")
   end
@@ -108,7 +109,7 @@ class Video < Item
     still = File.join(File.dirname(source.path), "#{id}-still.jpg")
     long = File.join(path, "#{id}-long.jpg")
     File.open(long, 'w')
-    command = "/opt/local/bin/convert #{still} -thumbnail 500x150^ -gravity center -extent 500x150 #{long}"
+    command = "convert #{still} -thumbnail 500x150^ -gravity center -extent 500x150 #{long}"
     logger.debug command
     command.gsub!(/\s+/," ")
   end

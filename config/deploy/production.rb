@@ -40,7 +40,7 @@ set :runner, user
 set :use_sudo, true
 
 #############################################################
-#	Passenger
+#	App Server
 #############################################################
 
 namespace :deploy do
@@ -64,14 +64,12 @@ namespace :deploy do
     
     desc "Create symlink to shared folder"
     task :create_symlink do
-      run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
       run "ln -nfs #{shared_path}/sources #{release_path}/public/system/sources"
     end
-  
   end
     
-  # Restart passenger on deploy
-  desc "Restarting mod_rails with restart.txt"
+  # Restart thin on deploy
+  desc "Restarting thin"
   task :restart, :roles => :app, :except => { :no_release => true } do
       sudo "/etc/init.d/thin restart"
   end
@@ -80,5 +78,6 @@ namespace :deploy do
     desc "#{t} task is a no-op with mod_rails"
     task t, :roles => :app do ; end
   end
-  
 end
+
+after "deploy", "deploy:cleanup"

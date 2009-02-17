@@ -10,20 +10,8 @@
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
 		<meta name="description" content="<%= yield(:description) || 'The portfolio of Anna Cole' %>"></meta>
-		<%= stylesheet_link_tag 'base' %>
-		<%= stylesheet_link_tag 'layout' %>
-		<%= stylesheet_link_tag 'colours' %>
-		<%= stylesheet_link_tag 'common' %>
-		<%= stylesheet_link_tag 'jquery.jcarousel' %>
-		<%= stylesheet_link_tag 'prettyPhoto' %>
-		<%= stylesheet_link_tag 'yellow' %>
-		<%= javascript_include_tag 'jQuery.js' %>
-		<%= javascript_include_tag 'jquery.tablednd_0_5' %>
-		<%= javascript_include_tag 'jquery.parseUri.js' %>
-		<%= javascript_include_tag 'jquery.jcarousel_lite' %>
-		<%= javascript_include_tag 'jquery.prettyPhoto' %>
-		<%= javascript_include_tag 'application' %>
-		<%= javascript_include_tag 'ufo' %>
+		<%= stylesheet_link_merged 'base', 'layout', 'colours', 'common', 'jquery.jcarousel', 'prettyPhoto', 'yellow' %>
+		<%= javascript_include_merged 'jQuery.js', 'jquery.tablednd_0_5', 'jquery.parseUri.js', 'jquery.jcarousel_lite', 'jquery.prettyPhoto', 'application', 'ufo' %>
 	</head>
 	<body>
 	 <div id="flare">

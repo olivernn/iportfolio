@@ -1,12 +1,19 @@
 --- 
 javascripts: 
-- base: 
-  - prototype
-  - effects
-  - dragdrop
-  - controls
+- base:
+  - jQuery 
+  - ufo
+  - jquery.tablednd_0_5
+  - jquery.prettyPhoto
+  - jquery.parseUri
+  - jquery.jcarousel_lite
   - application
 stylesheets: 
-- base:
+- base: 
   - base
-
+  - colours
+  - common
+  - jquery.jcarousel
+  - layout
+  - prettyPhoto
+  - yellow
