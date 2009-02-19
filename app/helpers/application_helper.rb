@@ -36,7 +36,7 @@ module ApplicationHelper
     end
     html
   end
-  
+    
   # methods that set the meta tags for the page
   #displays a nice page title easily
   def meta_title(text)
