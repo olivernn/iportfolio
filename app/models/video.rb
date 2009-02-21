@@ -86,9 +86,10 @@ class Video < Item
   def still_image_command
     still = File.join(File.dirname(source.path), "#{id}-still.jpg")
     File.open(still, 'w')
-    command = <<-end_command
-      ffmpeg -i #{source.path} -an -ss 00:00:01 -an -r 1 -vframes 1 -f mjpeg -y #{still}
-    end_command
+    command = "ffmpeg -i #{source.path} -an -ss 00:00:01 -an -r 1 -vframes 1 -f mjpeg -y #{still}"
+    if RAILS_ENV == "development"
+      command = "/opt/local/bin/" + command
+    end
     logger.debug command
     command.gsub!(/\s+/," ")
   end

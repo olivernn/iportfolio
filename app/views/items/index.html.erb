@@ -7,7 +7,7 @@
 	  <td><%= image_tag item.display_thumbnail %></td>
 	  <td><%= item.name %></td>
       <td><%= link_to 'Show', [@project, item] %></td>
-      <td><%= link_to 'Destroy', project_items_path(@project, item), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Destroy', [@project, item], :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </tbody>
