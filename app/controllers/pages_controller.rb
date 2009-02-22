@@ -31,7 +31,7 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
-    @page = Page.find(params[:id])
+    @page = Page.display(params[:id])
   end
 
   # POST /pages
@@ -54,7 +54,7 @@ class PagesController < ApplicationController
   # PUT /pages/1
   # PUT /pages/1.xml
   def update
-    @page = Page.find(params[:id])
+    @page = Page.display(params[:id])
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
@@ -71,7 +71,7 @@ class PagesController < ApplicationController
   # DELETE /pages/1
   # DELETE /pages/1.xml
   def destroy
-    @page = Page.find(params[:id])
+    @page = Page.display(params[:id])
     @page.destroy
 
     respond_to do |format|

@@ -12,7 +12,8 @@ class Profile < ActiveRecord::Base
   validates_presence_of :email
   include RFC822 # the module that contains the EmailAddress RegExp
   validates_format_of :email, :with => EmailAddress
-  validates_numericality_of :phone, :allow_nil => true
+  # remove the phone validation becuase :allow_nil is buggered!
+  # validates_numericality_of :phone, :allow_nil => true
     
   # paperclip specific validations
   # note these break the tests, don't know how to put these in rspec
