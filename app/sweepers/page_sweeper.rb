@@ -15,8 +15,7 @@ class PageSweeper < ActionController::Caching::Sweeper
   
   private
   def expire_page_cache(page)
-    # expire the index page action cache
-    expire_fragment(%r{index.cache})
-    expire_action :controller => :page, :action => :show, :id => page 
+    # expire the entire cache since the changes to page headings are displayed everywhere!
+    expire_fragment(%r{.})
   end
 end

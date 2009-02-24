@@ -49,6 +49,8 @@ body{
 
 #footer{
 	clear:left;
+	font-size:0.7em;
+	text-indent:10px;
 }
 
 #style_buttons{
