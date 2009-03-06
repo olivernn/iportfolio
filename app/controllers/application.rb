@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include RoleRequirementSystem
   
   # including everything that is needed for the sidebar
-  before_filter :sidebar
+  before_filter :sidebar, :except => :sitemap
   
   helper :all # include all helpers, all the time
   protect_from_forgery :secret => 'b0a876313f3f9195e9bd01473bc5cd06', :except => :sort

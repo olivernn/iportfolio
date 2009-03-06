@@ -35,7 +35,7 @@ class Project < ActiveRecord::Base
   end
   
   # named scopes
-  named_scope :active,  :conditions => {:status => "active"}
+  named_scope :active,  :conditions => {:status => "active"}, :order => 'created_at DESC'
   named_scope :drafts,  :conditions => {:status => "draft"}
   named_scope :removed, :conditions => {:status => "removed"}
   

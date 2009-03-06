@@ -51,7 +51,7 @@ describe Project do
   
   # making sure that the named_scopes have been included
   it "should have an active named_scope on status" do
-    Project.active.proxy_options.should == {:conditions => {:status => "active"}}
+    Project.active.proxy_options.should == {:conditions => {:status => "active"}, :order => 'created_at DESC'}
   end
   
   it "should have a removed named_scrop on status" do

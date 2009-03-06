@@ -2,8 +2,8 @@
 #	Application
 #############################################################
 
-set :application, "bort"
-set :deploy_to, "/path/to/deploy"
+set :application, "annacole.co.uk"
+set :deploy_to, "/home/admin/public_html/#{application}"
 
 #############################################################
 #	Settings
@@ -11,16 +11,18 @@ set :deploy_to, "/path/to/deploy"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+ssh_options[:keys] = %w(~/.ssh/saturn)
+ssh_options[:port] = 40000
 set :use_sudo, true
 set :scm_verbose, true
-set :rails_env, "staging" 
+set :rails_env, "production"
 
 #############################################################
 #	Servers
 #############################################################
 
-set :user, "bort"
-set :domain, "www.example.com"
+set :user, "admin"
+set :domain, "206.253.168.144"
 server domain, :app, :web
 role :db, domain, :primary => true
 
@@ -29,11 +31,13 @@ role :db, domain, :primary => true
 #############################################################
 
 set :scm, :git
-set :branch, "master"
-set :scm_user, 'bort'
-set :scm_passphrase, "PASSWORD"
-set :repository, "git@github.com:FudgeStudios/bort.git"
-set :deploy_via, :remote_cache
+set :branch, "movies"
+# set :scm_user, 'bort'
+# set :scm_passphrase, "PASSWORD"
+set :repository, "git@github.com:olivernn/iportfolio.git"
+set :deploy_via, :copy
+set :runner, user
+set :use_sudo, true
 
 #############################################################
 #	Passenger
@@ -43,12 +47,12 @@ namespace :deploy do
   desc "Create the database yaml file"
   task :after_update_code do
     db_config = <<-EOF
-    staging:    
+    production:    
       adapter: mysql
       encoding: utf8
-      username: root
-      password: 
-      database: bort_staging
+      username: iportfolio
+      password: computer
+      database: iportfolio_production
       host: localhost
     EOF
     
@@ -59,11 +63,10 @@ namespace :deploy do
     # Just change the paths to whatever you need.
     #########################################################
     
-    # desc "Symlink the upload directories"
-    # task :before_symlink do
-    #   run "mkdir -p #{shared_path}/uploads"
-    #   run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
-    # end
+    desc "Create symlink to shared folder"
+    task :create_symlink do
+      run "ln -nfs #{shared_path}/sources #{release_path}/public/system/sources"
+    end
   end
   
   # Restart passenger on deploy
@@ -77,4 +80,5 @@ namespace :deploy do
     task t, :roles => :app do ; end
   end
   
+  after "deploy", "deploy:cleanup"
 end
